@@ -1,5 +1,6 @@
 import useMediaQuery from "@/hooks/useMediaQuery";
 import Image from "next/image";
+import { useState } from "react";
 
 export default function Home() {
   const isAboveMediumScreens = useMediaQuery("(min-width: 640px)");
@@ -39,6 +40,15 @@ function Header({ isAboveMediumScreens }) {
 }
 
 function Main({ isAboveMediumScreens }) {
+  const [searchText, setSearchText] = useState("");
+
+  const handleInputChange = (e) => {
+    setSearchText(e.target.value);
+  };
+
+  const handleClearSearch = () => {
+    setSearchText("");
+  };
   return (
     <div className="sm:grid grid-cols-2">
       <div className="mt-[195px] md:mt-[217px]  lg:mr-[177px] text-[#1e1e1e] mb-[245px] lg:max-w-[350px]">
@@ -60,19 +70,27 @@ function Main({ isAboveMediumScreens }) {
               alt="search icon"
             />
             <input
+              onChange={handleInputChange}
+              value={searchText}
               name="search"
               autoComplete="off"
               aria-label="Enter Address"
               className="w-full focus:border-[#5378F6] pr-3 pl-10 rounded-lg py-4 px-3 bg-[#F3F7FE] text-[#101012] text-sm border border-[#d4dcf1]"
               placeholder="Enter Address"
             />
-            <Image
-              className="absolute right-4"
-              width={16}
-              height={16}
-              src="/mcancel.svg"
-              alt="cancel icon"
-            />
+            {searchText && (
+              <div
+                onClick={handleClearSearch}
+                className="absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer"
+              >
+                <Image
+                  width={16}
+                  height={16}
+                  src="/mcancel.svg"
+                  alt="cancel icon"
+                />
+              </div>
+            )}
           </div>
         </form>
         <button className="bg-[#3366FF] px-10 py-4 uppercase rounded-[6px] text-sm font-medium  text-[#FFFFFF] mt-2">

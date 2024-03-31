@@ -1,5 +1,8 @@
+import Modal from "@/components/Modal";
+import ReviewSubmitted from "@/components/ReviewSubmitted";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import Image from "next/image";
+import { useState } from "react";
 
 export default function AllReview() {
   const isAboveMediumScreens = useMediaQuery("(min-width: 500px)");
@@ -12,6 +15,29 @@ export default function AllReview() {
 }
 
 function Header({ isAboveMediumScreens }) {
+  const [searchText, setSearchText] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [showSubmit, setShowSubmit] = useState(false);
+  const handleShowSubmit = () => {
+    setShowSubmit(true);
+  };
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleInputChange = (e) => {
+    setSearchText(e.target.value);
+  };
+
+  const handleClearSearch = () => {
+    setSearchText("");
+  };
   return isAboveMediumScreens ? (
     <header className="px-[100px] py-4 bg-[#F2F6FD]">
       <div className="grid grid-cols-[92px_1fr_125px] content-center mb-4">
@@ -34,19 +60,27 @@ function Header({ isAboveMediumScreens }) {
               alt="search icon"
             />
             <input
+              onChange={handleInputChange}
+              value={searchText}
               name="search"
               autoComplete="off"
               aria-label="Enter Address"
               className="w-full focus:border-[#5378F6] pr-3 pl-10 rounded-lg py-4 px-3 bg-[#F3F7FE] text-[#101012] text-sm border border-[#d4dcf1]"
               placeholder="Enter Address"
             />
-            <Image
-              className="absolute right-4 pointer-events-none"
-              width={16}
-              height={16}
-              src="/cancel.svg"
-              alt="cancel icon"
-            />
+            {searchText && (
+              <div
+                onClick={handleClearSearch}
+                className="absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer"
+              >
+                <Image
+                  width={16}
+                  height={16}
+                  src="/mcancel.svg"
+                  alt="cancel icon"
+                />
+              </div>
+            )}
           </div>
         </form>
         <div className="flex items-center gap-3">
@@ -63,7 +97,9 @@ function Header({ isAboveMediumScreens }) {
       <div className="grid grid-cols-1 md:grid-cols-[1fr_210px_repeat(2,_50px)] md:grid-rows-1 gap-4 content-center mb-4">
         <div>
           <h1 className="text-2xl font-medium leading-[19.2px]">
-            Bonny and Clyde Street, Ajao Estate, Lagos
+            {searchText
+              ? searchText
+              : "Bonny and Clyde Street, Ajao Estate, Lagos"}
           </h1>
           <p className="text-base leading-[24px] font-medium">
             <span className="font-semibold">“450”</span> Reviews{" "}
@@ -72,9 +108,13 @@ function Header({ isAboveMediumScreens }) {
             </span>
           </p>
         </div>
-        <button className="bg-[#3366FF] h-[50px] px-10 py-4 uppercase rounded-[6px] text-sm font-medium  text-[#FFFFFF]">
+        <button
+          onClick={showModal}
+          className="bg-[#3366FF] h-[50px] px-10 py-4 uppercase rounded-[6px] text-sm font-medium  text-[#FFFFFF]"
+        >
           leave a review
         </button>
+
         <Image
           className="h-[50px]"
           src="/bookmark.svg"
@@ -112,6 +152,14 @@ function Header({ isAboveMediumScreens }) {
           height={24}
         />
       </div>
+      {isModalOpen && (
+        <Modal
+          onSubmit={handleShowSubmit}
+          onOk={handleOk}
+          onCancel={handleCancel}
+        />
+      )}
+      {showSubmit && <ReviewSubmitted />}
     </header>
   ) : (
     <header className="mb-4 px-4">
@@ -178,12 +226,23 @@ function Header({ isAboveMediumScreens }) {
         <span className="cat-label">Wifi</span>
       </div>
       <div className="flex flex-wrap gap-4">
-        <button className="bg-[#3366FF] px-10 py-4 uppercase rounded-[6px] text-sm font-medium  text-[#FFFFFF]">
+        <button
+          onClick={showModal}
+          className="bg-[#3366FF] px-10 py-4 uppercase rounded-[6px] text-sm font-medium  text-[#FFFFFF]"
+        >
           leave a review
         </button>
         <Image src="/bookmark.svg" width={56} height={50} alt="bookmark" />
         <Image src="/share.svg" width={56} height={50} alt="share" />
       </div>
+      {isModalOpen && (
+        <Modal
+          onSubmit={handleShowSubmit}
+          onOk={handleOk}
+          onCancel={handleCancel}
+        />
+      )}
+      {showSubmit && <ReviewSubmitted />}
     </header>
   );
 }
