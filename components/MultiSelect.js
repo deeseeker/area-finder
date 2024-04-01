@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
-export default function MultiSelect() {
+export default function MultiSelect({ setSelectedFeatures }) {
   const features = [
     "Parking Lot",
     "Nightlife",
@@ -50,6 +50,9 @@ export default function MultiSelect() {
   );
   const numFeat = Object.values(selectedStates).filter(Boolean).length;
   const selectedFeat = selectedKeys.map((key) => features[key]);
+  const handleSelectedFeature = () => {
+    setSelectedFeatures(selectedFeat);
+  };
   const dropdownRef = useRef(null);
   useEffect(() => {
     const onClick = (e) => {
@@ -85,7 +88,7 @@ export default function MultiSelect() {
         <div
           onClick={(e) => e.stopPropagation()}
           ref={dropdownRef}
-          className="absolute bg-[#F3F7FE] border-[1px] border-[solid] border-[#D4DCF1] rounded-md w-[311px] h-[323px] text-[#1e1e1e] overflow-y-auto px-2"
+          className="absolute bg-[#F3F7FE] border-[1px] border-[solid] border-[#D4DCF1] rounded-md w-[311px] h-[323px]  text-[#1e1e1e] overflow-y-auto px-2"
         >
           {features.map((feature, index) => (
             <fieldset

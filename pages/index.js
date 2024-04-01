@@ -1,3 +1,4 @@
+import VerticalSlider from "@/components/VerticalSlider";
 import useMediaQuery from "@/hooks/useMediaQuery";
 import Image from "next/image";
 import { useState } from "react";
@@ -5,7 +6,7 @@ import { useState } from "react";
 export default function Home() {
   const isAboveMediumScreens = useMediaQuery("(min-width: 640px)");
   return (
-    <div className="px-4 md:px-[100px]">
+    <div className="px-4 md:px-[100px] h-screen overflow-hidden">
       <Header isAboveMediumScreens={isAboveMediumScreens} />
       <Main isAboveMediumScreens={isAboveMediumScreens} />
     </div>
@@ -14,8 +15,8 @@ export default function Home() {
 
 function Header({ isAboveMediumScreens }) {
   return (
-    <header>
-      <div className="flex justify-between items-center mt-5 md:relative">
+    <header className="sticky top-0">
+      <div className="flex justify-between items-center mt-5">
         <a>
           <Image
             alt="area-finder-logo"
@@ -24,7 +25,7 @@ function Header({ isAboveMediumScreens }) {
             src="/logo.svg"
           />
         </a>
-        <div className="sm:flex items-center z-10">
+        <div className="sm:flex items-center">
           {isAboveMediumScreens ? <p>Welcome!</p> : ""}
           <Image
             className="rounded-full border-2 border-[#fff] w-8 h-8 object-cover"
@@ -50,7 +51,7 @@ function Main({ isAboveMediumScreens }) {
     setSearchText("");
   };
   return (
-    <div className="sm:grid grid-cols-2">
+    <div className="sm:grid grid-cols-2 sm:mt-6">
       <div className="mt-[195px] md:mt-[217px]  lg:mr-[177px] text-[#1e1e1e] mb-[245px] lg:max-w-[350px]">
         <p className="text-[40px] font-bold leading-[48px]">
           Find a place you will love to live!
@@ -104,22 +105,42 @@ function Main({ isAboveMediumScreens }) {
 
 function ReviewCollection() {
   return (
-    <div className="grid md:grid-cols-1 lg:grid-cols-2 gap-6 sm:ml-20 md:absolute top-[-44px] right-[100px]">
-      <ReviewCard issue="/traffic.svg" />
-      <ReviewCard issue="/traffic.svg" />
-      <ReviewCard issue="/network.svg" />
-      <ReviewCard issue="/traffic.svg" />
-      <ReviewCard issue="/power.svg" />
-      <ReviewCard issue="/water.svg" />
-      <ReviewCard issue="/security.svg" />
-      <ReviewCard issue="/road.svg" />
+    <div className="gradient-mask-t-[transparent,rgba(0,0,0,0.5)_100px,rgba(0,0,0,1.0)_70%] grid md:grid-cols-1 lg:grid-cols-2 gap-2 sm:ml-20 bg-[#D9D9D9] h-screen overflow-scroll [scrollbar-width:none]">
+      <VerticalSlider>
+        <div className="mb-2">
+          <ReviewCard issue="/traffic.svg" />
+        </div>
+        <div className="mb-2">
+          <ReviewCard issue="/traffic.svg" />
+        </div>
+        <div className="mb-2">
+          <ReviewCard issue="/network.svg" />
+        </div>
+        <div className="mb-2">
+          <ReviewCard issue="/traffic.svg" />
+        </div>
+      </VerticalSlider>
+      <VerticalSlider>
+        <div className="mb-2">
+          <ReviewCard issue="/power.svg" />
+        </div>
+        <div className="mb-2">
+          <ReviewCard issue="/water.svg" />
+        </div>
+        <div className="mb-2">
+          <ReviewCard issue="/security.svg" />
+        </div>
+        <div className="mb-2">
+          <ReviewCard issue="/road.svg" />
+        </div>
+      </VerticalSlider>
     </div>
   );
 }
 
 function ReviewCard({ issue }) {
   return (
-    <div className="w-[239px] bg-pink-500 rounded-[15px] p-4">
+    <div className="w-[239px] bg-[#FAFCFD]  rounded-[15px] p-4">
       <div className="flex justify-between mb-1">
         <div className="flex gap-1">
           <Image
