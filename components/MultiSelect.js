@@ -69,7 +69,7 @@ export default function MultiSelect({ setSelectedFeatures }) {
   return (
     <div className="relative">
       <button
-        className="border-none bg-[#F3F7FE] w-[311px] h-[50px] text-[#1e1e1e] flex justify-between px-2 rounded-md items-center"
+        className="border-none bg-[#F3F7FE] w-full h-[50px] text-[#1e1e1e] flex justify-between px-2 rounded-md items-center"
         onClick={(e) => {
           e.stopPropagation();
           setIsDropdownDisplayed((prevState) => !prevState);
@@ -88,7 +88,7 @@ export default function MultiSelect({ setSelectedFeatures }) {
         <div
           onClick={(e) => e.stopPropagation()}
           ref={dropdownRef}
-          className="absolute bg-[#F3F7FE] border-[1px] border-[solid] border-[#D4DCF1] rounded-md w-[311px] h-[323px]  text-[#1e1e1e] overflow-y-auto px-2"
+          className="absolute bg-[#F3F7FE] border-[1px] border-[solid] border-[#D4DCF1] rounded-md xl:grid grid-cols-[repeat(5,_106px)] gap-7 auto-cols-auto w-full h-80 xl:h-auto  text-[#1e1e1e] overflow-y-scroll px-2"
         >
           {features.map((feature, index) => (
             <fieldset

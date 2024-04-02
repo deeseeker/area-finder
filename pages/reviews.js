@@ -1,26 +1,10 @@
+import AppContext from "@/AppContext";
 import Modal from "@/components/Modal";
 import ReviewSubmitted from "@/components/ReviewSubmitted";
 import useMediaQuery from "@/hooks/useMediaQuery";
+import { initData } from "@/public/data";
 import Image from "next/image";
-import { useEffect, useState } from "react";
-
-const initData = [
-  {
-    rating: 4.0,
-    review:
-      "There is no stable electricity. The roads are fairly good and there is a sense of community. The drainage system is poor and most residents litter their surroundings. There are several grocery stores and Supermarkets.",
-  },
-  {
-    rating: 4.0,
-    review:
-      "There is no stable electricity. The roads are fairly good and there is a sense of community. The drainage system is poor and most residents litter their surroundings. There are several grocery stores and Supermarkets.",
-  },
-  {
-    rating: 4.0,
-    review:
-      "There is no stable electricity. The roads are fairly good and there is a sense of community. The drainage system is poor and most residents litter their surroundings. There are several grocery stores and Supermarkets.",
-  },
-];
+import { useContext, useEffect, useState } from "react";
 
 export default function AllReview() {
   const isAboveMediumScreens = useMediaQuery("(min-width: 500px)");
@@ -40,7 +24,6 @@ function Header({ isAboveMediumScreens }) {
   const [rating, setRating] = useState(0);
   const [data, setData] = useState(initData);
   const newReview = { rating, review };
-  console.log(newReview);
 
   useEffect(() => {
     const storedData = localStorage.getItem("reviews");
@@ -365,27 +348,19 @@ function MainReviews({ isAboveMediumScreens }) {
 }
 
 function ReviewList() {
+  const data = useContext(AppContext);
+  console.log(data);
   return (
     <ul>
-      <li>
-        <Review />
-      </li>
-      <li>
-        <Review />
-      </li>
-      <li>
-        <Review />
-      </li>
-      <li>
-        <Review />
-      </li>
-      <li>
-        <Review />
-      </li>
+      {data.map((review, index) => (
+        <li key={index}>
+          <Review rating={review.rating} review={review.review} />
+        </li>
+      ))}
     </ul>
   );
 }
-function Review() {
+function Review({ rating, review }) {
   return (
     <div className="pb-4 border-b border-[#D9D9D9] mb-4">
       <div className="flex items-center justify-between mb-2">
@@ -408,15 +383,10 @@ function Review() {
             height={12}
             alt="star rating icon"
           />{" "}
-          <span className="ml-[2px]">4.0</span>
+          <span className="ml-[2px]">{rating}</span>
         </div>
       </div>
-      <p className="text-[16px] font-normal leading-[24px]">
-        There is no stable electricity. The roads are fairly good and there is a
-        sense of community. The drainage system is poor and most residents
-        litter their surroundings. There are several grocery stores and
-        Supermarkets.
-      </p>
+      <p className="text-[16px] font-normal leading-[24px]">{review}</p>
       <div className="flex items-center gap-8 text-[#0D2159]">
         <div className="flex items-center">
           <Image src="/like.svg" width={24} height={24} alt="like icon" />
