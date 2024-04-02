@@ -25,7 +25,7 @@ function Header({ isAboveMediumScreens }) {
             src="/logo.svg"
           />
         </a>
-        <div className="sm:flex items-center">
+        <div className="sm:flex items-center gap-3">
           {isAboveMediumScreens ? <p>Welcome!</p> : ""}
           <Image
             className="rounded-full border-2 border-[#fff] w-8 h-8 object-cover"
@@ -52,7 +52,7 @@ function Main({ isAboveMediumScreens }) {
   };
   return (
     <div className="xl:grid xl:grid-cols-2">
-      <div className="lg:mr-[177px] text-[#1e1e1e] ">
+      <div className="lg:mr-[177px] text-[#1e1e1e] mt-20 sm:mt-32">
         <div className="max-w-[330px] sm:max-w-[450px] xl:max-w-[330px]">
           <p className=" text-[40px] font-bold leading-[48px]">
             Find a place you will love to live!
@@ -96,7 +96,7 @@ function Main({ isAboveMediumScreens }) {
             )}
           </div>
         </form>
-        <button className="bg-[#3366FF] px-10 py-4 uppercase rounded-[6px] text-sm font-medium  text-[#FFFFFF] mt-2">
+        <button className="bg-[#3366FF] active:bg-[#061E66] hover:bg-[#2952CC] px-10 py-4 uppercase rounded-[6px] text-sm font-medium  text-[#FFFFFF] mt-2">
           Search
         </button>
       </div>

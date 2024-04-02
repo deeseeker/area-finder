@@ -7,9 +7,9 @@ import Image from "next/image";
 import { useContext, useEffect, useState } from "react";
 
 export default function AllReview() {
-  const isAboveMediumScreens = useMediaQuery("(min-width: 500px)");
+  const isAboveMediumScreens = useMediaQuery("(min-width: 840px)");
   return (
-    <div>
+    <div className="mx-auto sm:max-w-[700px] md:max-w-full">
       <Header isAboveMediumScreens={isAboveMediumScreens} />
       <MainReviews isAboveMediumScreens={isAboveMediumScreens} />
     </div>
@@ -62,7 +62,7 @@ function Header({ isAboveMediumScreens }) {
   return isAboveMediumScreens ? (
     <>
       <header className="px-[100px] py-4 bg-[#F2F6FD]">
-        <div className="grid grid-cols-[92px_1fr_125px] content-center mb-4">
+        <div className="md:grid grid-cols-[92px_1fr_125px] content-center mb-4">
           <a>
             <Image
               alt="area-finder-logo"
@@ -87,7 +87,7 @@ function Header({ isAboveMediumScreens }) {
                 name="search"
                 autoComplete="off"
                 aria-label="Enter Address"
-                className="w-full focus:border-[#5378F6] pr-3 pl-10 rounded-lg py-4 px-3 bg-[#F3F7FE] text-[#101012] text-sm border border-[#d4dcf1]"
+                className="w-full focus:ring-0 focus:outline-none focus:border-[#5378F6] pr-3 pl-10 rounded-lg py-4 px-3 bg-[#F3F7FE] text-[#101012] text-sm border border-[#d4dcf1]"
                 placeholder="Enter Address"
               />
               {searchText && (
@@ -116,7 +116,7 @@ function Header({ isAboveMediumScreens }) {
             />
           </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-[1fr_210px_repeat(2,_50px)] md:grid-rows-1 gap-4 content-center mb-4">
+        <div className="flex flex-wrap lg:grid lg:grid-cols-[1fr_210px_repeat(2,_50px)] md:grid-rows-1 gap-4 content-center mb-4">
           <div>
             <h1 className="text-2xl font-medium leading-[19.2px]">
               {searchText
@@ -132,7 +132,7 @@ function Header({ isAboveMediumScreens }) {
           </div>
           <button
             onClick={showModal}
-            className="bg-[#3366FF] h-[50px] px-10 py-4 uppercase rounded-[6px] text-sm font-medium  text-[#FFFFFF]"
+            className="bg-[#3366FF] active:bg-[#061E66] hover:bg-[#2952CC] h-[50px] px-10 py-4 uppercase rounded-[6px] text-sm font-medium  text-[#FFFFFF]"
           >
             leave a review
           </button>
@@ -209,7 +209,7 @@ function Header({ isAboveMediumScreens }) {
           />
         </div>
         <form>
-          <div className="w-full max-w-md relative flex items-center text-[#484851]">
+          <div className="w-full max-w-md relative flex items-center text-[#484851] mb-4">
             <Image
               className="absolute ml-3 pointer-events-none"
               width={16}
@@ -282,7 +282,7 @@ function MainReviews({ isAboveMediumScreens }) {
   return (
     <section>
       {isAboveMediumScreens ? (
-        <div className="flex gap-4 px-[100px] py-4">
+        <div className="lg:flex gap-4 px-[100px] py-4">
           <ReviewList />
           <div className="grid grid-cols-[repeat(2,_235px)] grid-rows-[repeat(2,_224px)] gap-2">
             <Image
