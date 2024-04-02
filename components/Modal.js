@@ -6,6 +6,13 @@ import StarRating from "./StarRating";
 
 function Modal({ onSubmit, onOk, onCancel, review, onReview, onSetRating }) {
   const [selectedFeatures, setSelectedFeatures] = useState([]);
+  const [isDisabled, setIsDisabled] = useState(true);
+
+  const handleReviewChange = (e) => {
+    const value = e.target.value;
+    onReview(value);
+    setIsDisabled(value.trim() === "");
+  };
   return (
     <div className="fixed inset-0 bg-opacity-100 flex items-center justify-center bg-[#1D3045]">
       <div className="w-[343px] lg:w-[695px] rounded-xl bg-[white] p-4 h-auto">
@@ -20,13 +27,6 @@ function Modal({ onSubmit, onOk, onCancel, review, onReview, onSetRating }) {
           <p className="mb-3.5 mt-4 font-medium text-sm leading-[16.94px]">
             Rate location
           </p>
-          {/* <Image
-            src="/multistar.svg"
-            width={136}
-            height={24}
-            alt="star review"
-            className="mb-4"
-          /> */}
           <StarRating onSetRating={onSetRating} size={24} color="#FFC70066" />
           <form onSubmit={onSubmit} className="rounded-md">
             <label className="text-sm font-normal leading-[16.94px] mb-3.5 mt-6">
@@ -35,9 +35,9 @@ function Modal({ onSubmit, onOk, onCancel, review, onReview, onSetRating }) {
             <textarea
               value={review}
               name="review"
-              onChange={(e) => onReview(e.target.value)}
+              onChange={handleReviewChange}
               placeholder=""
-              className="w-full lg:h-[173px] p-3 rounded-md border-[1px] border-[solid] border-[#D4DCF1]  mb-4"
+              className="w-full lg:h-[173px] p-3 focus:ring-0 focus:outline-none focus:border-[#5378F6] rounded-md border-[1px] border-[solid] border-[#D4DCF1]  mb-4"
             />
 
             <fieldset>
@@ -53,7 +53,9 @@ function Modal({ onSubmit, onOk, onCancel, review, onReview, onSetRating }) {
               onClick={() => {
                 onSubmit();
               }}
-              className="bg-[#3366FF] text-center uppercase rounded-md w-[144px] lg:w-[312px] h-auto py-4 px-10 text-[#FFF]"
+              disabled={isDisabled}
+              type="button"
+              className="disabled:bg-[#E4E9FB] bg-[#3366FF] text-center uppercase rounded-md w-[144px] lg:w-[312px] h-auto py-4 px-10 text-[#FFF]"
             >
               submit
             </button>

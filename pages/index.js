@@ -78,7 +78,7 @@ function Main({ isAboveMediumScreens }) {
               name="search"
               autoComplete="off"
               aria-label="Enter Address"
-              className="w-full focus:border-[#5378F6] pr-3 pl-10 rounded-lg py-4 px-3 bg-[#F3F7FE] text-[#101012] text-sm border border-[#d4dcf1]"
+              className="w-full focus:ring-0 focus:outline-none focus:border-[#5378F6] pr-3 pl-10 rounded-lg py-4 px-3 bg-[#F3F7FE] text-[#101012] text-sm border border-[#d4dcf1]"
               placeholder="Enter Address"
             />
             {searchText && (

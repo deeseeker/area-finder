@@ -349,7 +349,6 @@ function MainReviews({ isAboveMediumScreens }) {
 
 function ReviewList() {
   const data = useContext(AppContext);
-  console.log(data);
   return (
     <ul>
       {data.map((review, index) => (
