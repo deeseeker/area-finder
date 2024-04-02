@@ -4,9 +4,9 @@ import Image from "next/image";
 import { useState } from "react";
 
 export default function Home() {
-  const isAboveMediumScreens = useMediaQuery("(min-width: 640px)");
+  const isAboveMediumScreens = useMediaQuery("(min-width: 1280px)");
   return (
-    <div className="px-4 md:px-[100px] h-screen overflow-hidden">
+    <div className="px-4 md:px-[100px] h-screen overflow-y-hidden">
       <Header isAboveMediumScreens={isAboveMediumScreens} />
       <Main isAboveMediumScreens={isAboveMediumScreens} />
     </div>
@@ -15,7 +15,7 @@ export default function Home() {
 
 function Header({ isAboveMediumScreens }) {
   return (
-    <header className="sticky top-0">
+    <header className="sticky top-0 mb-4">
       <div className="flex justify-between items-center mt-5">
         <a>
           <Image
@@ -51,15 +51,17 @@ function Main({ isAboveMediumScreens }) {
     setSearchText("");
   };
   return (
-    <div className="sm:grid grid-cols-2 sm:mt-6">
-      <div className="mt-[195px] md:mt-[217px]  lg:mr-[177px] text-[#1e1e1e] mb-[245px] lg:max-w-[350px]">
-        <p className="text-[40px] font-bold leading-[48px]">
-          Find a place you will love to live!
-        </p>
-        <p className="text-base font-normal leading-[25.6px] mb-6">
-          See through the lenses of people who have lived or visited the
-          neighbourhood you might have in mind.
-        </p>
+    <div className="xl:grid xl:grid-cols-2">
+      <div className="lg:mr-[177px] text-[#1e1e1e] ">
+        <div className="max-w-[330px] sm:max-w-[450px] xl:max-w-[330px]">
+          <p className=" text-[40px] font-bold leading-[48px]">
+            Find a place you will love to live!
+          </p>
+          <p className="max-w-[3500px] text-base font-normal leading-[25.6px] mb-6">
+            See through the lenses of people who have lived or visited the
+            neighbourhood you might have in mind.
+          </p>
+        </div>
 
         <form>
           <div className="w-full max-w-md relative flex items-center text-[#484851]">
@@ -105,7 +107,7 @@ function Main({ isAboveMediumScreens }) {
 
 function ReviewCollection() {
   return (
-    <div className="gradient-mask-t-[transparent,rgba(0,0,0,0.5)_100px,rgba(0,0,0,1.0)_70%] grid md:grid-cols-1 lg:grid-cols-2 gap-2 sm:ml-20 bg-[#D9D9D9] h-screen overflow-scroll [scrollbar-width:none]">
+    <div className="gradient-mask-t-[transparent,rgba(0,0,0,0.5)_100px,rgba(0,0,0,1.0)_70%] xl:grid xl:grid-cols-2 gap-2 sm:ml-20 bg-[#D9D9D9]">
       <VerticalSlider>
         <div className="mb-2">
           <ReviewCard issue="/traffic.svg" />

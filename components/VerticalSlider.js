@@ -24,7 +24,7 @@ function VerticalSlider({ children }) {
     },
   };
   return (
-    <div className="slider-container">
+    <div>
       <Slider {...settings}>{children}</Slider>
     </div>
   );
