@@ -306,13 +306,20 @@ function MainReviews({ isAboveMediumScreens }) {
               height={224}
               alt="area-3"
             />
-            <Image
-              className="rounded-lg h-full w-full object-cover"
-              src="/images/img-4.jpeg"
-              width={235}
-              height={224}
-              alt="area-4"
-            />
+
+            <div class="w-full h-full rounded-lg shadow-2xl overflow-hidden relative">
+              <Image
+                className="absolute rounded-lg h-full w-full object-cover"
+                src="/images/img-4.jpeg"
+                width={235}
+                height={224}
+                alt="area-4"
+              />
+              <div class="absolute inset-0 bg-gray-900 bg-opacity-60"></div>
+              <div class="flex h-full items-center justify-center relative">
+                <h1 class="text-center text-white">VIEW MORE</h1>
+              </div>
+            </div>
           </div>
         </div>
       ) : (
