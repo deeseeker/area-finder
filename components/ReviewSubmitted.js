@@ -2,7 +2,7 @@ import React from "react";
 
 function ReviewSubmitted() {
   return (
-    <div className="fixed inset-0 bg-opacity-100 flex justify-center items-center bg-[#1D3045]">
+    <div className="fixed inset-0 bg-opacity-100 flex justify-center items-center bg-[#1D3045] z-30">
       <svg
         width="375"
         height="130"
