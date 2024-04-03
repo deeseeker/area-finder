@@ -315,7 +315,7 @@ function MainReviews({ isAboveMediumScreens }) {
                 height={224}
                 alt="area-4"
               />
-              <div class="absolute inset-0 bg-gray-900 bg-opacity-60"></div>
+              <div class="absolute inset-0 bg-gray-900 bg-opacity-50"></div>
               <div class="flex h-full items-center justify-center relative">
                 <h1 class="text-center text-white">VIEW MORE</h1>
               </div>
