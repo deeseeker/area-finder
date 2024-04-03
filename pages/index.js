@@ -54,7 +54,7 @@ function Main({ isAboveMediumScreens }) {
   };
   return (
     <div className="xl:grid xl:grid-cols-2">
-      <div className="lg:mr-[177px] text-[#1e1e1e]  flex flex-col justify-center mt-10">
+      <div className="lg:mr-[177px] text-[#1e1e1e]  flex flex-col justify-center mt-10 lg:mt-0">
         <div className="max-w-[330px] sm:max-w-[450px] xl:max-w-[330px]">
           <p className=" text-[40px] font-bold leading-[48px]">
             Find a place you will love to live!
