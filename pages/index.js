@@ -54,7 +54,7 @@ function Main({ isAboveMediumScreens }) {
   };
   return (
     <div className="xl:grid xl:grid-cols-2">
-      <div className="lg:mr-[177px] text-[#1e1e1e]  flex flex-col justify-center mt-10 lg:mt-0">
+      <div className="lg:mr-[177px] text-[#1e1e1e] mt-20 sm:mt-32">
         <div className="max-w-[330px] sm:max-w-[450px] xl:max-w-[330px]">
           <p className=" text-[40px] font-bold leading-[48px]">
             Find a place you will love to live!
@@ -100,7 +100,7 @@ function Main({ isAboveMediumScreens }) {
         </form>
         <button
           onClick={() => router.push("/reviews")}
-          className="bg-[#3366FF] active:bg-[#061E66] w-[146px] hover:bg-[#2952CC] px-10 py-4 uppercase rounded-[6px] text-sm font-medium  text-[#FFFFFF] mt-2"
+          className="bg-[#3366FF] active:bg-[#061E66] hover:bg-[#2952CC] px-10 py-4 uppercase rounded-[6px] text-sm font-medium  text-[#FFFFFF] mt-2"
         >
           Search
         </button>
