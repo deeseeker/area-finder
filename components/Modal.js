@@ -14,7 +14,7 @@ function Modal({ onSubmit, onOk, onCancel, review, onReview, onSetRating }) {
     setIsDisabled(value.trim() === "");
   };
   return (
-    <div className="fixed inset-0 bg-opacity-100 flex items-center justify-center bg-[#1D3045]">
+    <div className="fixed inset-0 bg-opacity-100 flex items-center justify-center bg-[#1D3045] z-30">
       <div className="w-[343px] lg:w-[695px] rounded-xl bg-[white] p-4 h-auto">
         <div>
           <h1 className="font-medium text-lg leading-[24px] text-center my-4">
